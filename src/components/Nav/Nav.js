@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
+import Logo from '../../images/svg/img-101-logo.svg';
 
 import useSite from 'hooks/use-site';
 import useSearch, { SEARCH_STATE_LOADED } from 'hooks/use-search';
@@ -20,8 +21,7 @@ const Nav = () => {
 
   const [searchVisibility, setSearchVisibility] = useState(SEARCH_HIDDEN);
 
-  const { metadata = {}, menus } = useSite();
-  const { title } = metadata;
+  const { menus } = useSite();
 
   const navigation = findMenuByLocation(menus, [
     process.env.WORDPRESS_MENU_LOCATION_NAVIGATION,
@@ -181,7 +181,9 @@ const Nav = () => {
       <Section className={styles.navSection}>
         <p className={styles.navName}>
           <Link href="/">
-            <a>{title}</a>
+            <a>
+              <Logo />
+            </a>
           </Link>
         </p>
         <ul className={styles.navMenu}>
