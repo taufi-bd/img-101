@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
-import { FaSearch } from 'react-icons/fa';
 import Logo from '../../images/svg/img-101-logo.svg';
 import Head from 'next/head';
 
 import useSite from 'hooks/use-site';
-import useSearch, { SEARCH_STATE_LOADED } from 'hooks/use-search';
+import useSearch from 'hooks/use-search';
 import { postPathBySlug } from 'lib/posts';
 import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus';
 
@@ -14,7 +13,6 @@ import Section from 'components/Section';
 import styles from './Nav.module.scss';
 import NavListItem from 'components/NavListItem';
 
-const SEARCH_VISIBLE = 'visible';
 const SEARCH_HIDDEN = 'hidden';
 
 const Nav = () => {
@@ -29,11 +27,9 @@ const Nav = () => {
     MENU_LOCATION_NAVIGATION_DEFAULT,
   ]);
 
-  const { query, results, search, clearSearch, state } = useSearch({
+  const { query, results, search, clearSearch } = useSearch({
     maxResults: 5,
   });
-
-  const searchIsLoaded = state === SEARCH_STATE_LOADED;
 
   // When the search visibility changes, we want to add an event listener that allows us to
   // detect when someone clicks outside of the search box, allowing us to close the results
@@ -100,14 +96,6 @@ const Nav = () => {
     search({
       query: currentTarget.value,
     });
-  }
-
-  /**
-   * handleOnToggleSearch
-   */
-
-  function handleOnToggleSearch() {
-    setSearchVisibility(SEARCH_VISIBLE);
   }
 
   /**
