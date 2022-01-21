@@ -1,9 +1,9 @@
 {
-  "name": "next-wordpress-starter",
-  "homepage": "https://next-wordpress-starter.spacejelly.dev",
+  "name": "img101",
+  "homepage": "https://img101.co.uk/",
   "version": "0.1.0",
   "license": "MIT",
-  "author": "Colby Fayock <hello@colbyfayock.com>",
+  "author": "Taufikur Rahman(taufi.bd@gmail.com)",
   "scripts": {
     "build": "next build",
     "wpe-build": "npm run build",
@@ -53,12 +53,5 @@
     "husky": "^7.0.4",
     "lint-staged": ">=12.1.4",
     "prettier": "2.4.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/colbyfayock/next-wordpress-starter"
-  },
-  "bugs": {
-    "url": "https://github.com/colbyfayock/next-wordpress-starter/issues"
   }
 }
