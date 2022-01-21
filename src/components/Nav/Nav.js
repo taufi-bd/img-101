@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
 import Logo from '../../images/svg/img-101-logo.svg';
+import Head from 'next/head';
 
 import useSite from 'hooks/use-site';
 import useSearch, { SEARCH_STATE_LOADED } from 'hooks/use-search';
@@ -178,6 +179,9 @@ const Nav = () => {
 
   return (
     <nav className={styles.nav}>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+      </Head>
       <Section className={styles.navSection}>
         <p className={styles.navName}>
           <Link href="/">
@@ -192,45 +196,37 @@ const Nav = () => {
           })}
         </ul>
         <div className={styles.navSearch}>
-          {searchVisibility === SEARCH_HIDDEN && (
-            <button onClick={handleOnToggleSearch} disabled={!searchIsLoaded}>
-              <span className="sr-only">Toggle Search</span>
-              <FaSearch />
-            </button>
-          )}
-          {searchVisibility === SEARCH_VISIBLE && (
-            <form ref={formRef} action="/search" data-search-is-active={!!query}>
-              <input
-                type="search"
-                name="q"
-                value={query || ''}
-                onChange={handleOnSearch}
-                autoComplete="off"
-                placeholder="Search..."
-                required
-              />
-              <div className={styles.navSearchResults}>
-                {results.length > 0 && (
-                  <ul>
-                    {results.map(({ slug, title }, index) => {
-                      return (
-                        <li key={slug}>
-                          <Link tabIndex={index} href={postPathBySlug(slug)}>
-                            <a>{title}</a>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-                {results.length === 0 && (
-                  <p>
-                    Sorry, not finding anything for <strong>{query}</strong>
-                  </p>
-                )}
-              </div>
-            </form>
-          )}
+          <form ref={formRef} action="/search" data-search-is-active={!!query}>
+            <input
+              type="search"
+              name="q"
+              value={query || ''}
+              onChange={handleOnSearch}
+              autoComplete="off"
+              placeholder="Search..."
+              required
+            />
+            <div className={styles.navSearchResults}>
+              {results.length > 0 && (
+                <ul>
+                  {results.map(({ slug, title }, index) => {
+                    return (
+                      <li key={slug}>
+                        <Link tabIndex={index} href={postPathBySlug(slug)}>
+                          <a>{title}</a>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+              {results.length === 0 && (
+                <p>
+                  Sorry, not finding anything for <strong>{query}</strong>
+                </p>
+              )}
+            </div>
+          </form>
         </div>
       </Section>
     </nav>

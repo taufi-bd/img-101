@@ -3,12 +3,13 @@ import Link from 'next/link';
 import { postPathBySlug, sanitizeExcerpt } from 'lib/posts';
 
 import Metadata from 'components/Metadata';
+import FeaturedImage from 'components/FeaturedImage';
 
 import { FaMapPin } from 'react-icons/fa';
 import styles from './PostCard.module.scss';
 
 const PostCard = ({ post, options = {} }) => {
-  const { title, excerpt, slug, date, author, categories, isSticky = false } = post;
+  const { title, excerpt, slug, date, author, featuredImage, categories, isSticky = false } = post;
   const { excludeMetadata = [] } = options;
 
   const metadata = {};
@@ -44,7 +45,14 @@ const PostCard = ({ post, options = {} }) => {
           />
         </a>
       </Link>
-      <Metadata className={styles.postCardMetadata} {...metadata} />
+
+      {featuredImage && (
+        <FeaturedImage
+          {...featuredImage}
+          src={featuredImage.sourceUrl}
+          dangerouslySetInnerHTML={featuredImage.caption}
+        />
+      )}
       {excerpt && (
         <div
           className={styles.postCardContent}
@@ -53,6 +61,10 @@ const PostCard = ({ post, options = {} }) => {
           }}
         />
       )}
+      <div>
+        <div className={styles.postCardDivider}></div>
+        <Metadata className={styles.postCardMetadata} {...metadata} />
+      </div>
     </div>
   );
 };

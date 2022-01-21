@@ -2,21 +2,23 @@
 
 .metadata {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  color: $color-gray-600;
+  color: #444;
   list-style: none;
   padding: 0;
-  margin: 0 -0.8em;
+  margin: 0;
 
   ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    border-top: 1px solid #e0e0e0;
   }
 
   & > li {
-    margin: 0.8em;
+    margin: 0;
   }
 
   p {
@@ -36,7 +38,8 @@
 
 .metadataAuthor {
   a {
-    margin-left: 0.2em;
+    margin-left: 0.2rem;
+    font-weight: bold;
   }
 
   address {
@@ -59,7 +62,7 @@
 
     &:after {
       content: ", ";
-      margin-right: 0.4em;
+      margin-right: 0;
     }
 
     &:last-child {
@@ -72,5 +75,5 @@
 
 .metadataSticky {
   font-size: 1.15em;
-  color: $color-gray-300;
+  color: $color-gray;
 }

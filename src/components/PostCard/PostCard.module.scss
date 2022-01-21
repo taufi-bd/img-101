@@ -1,11 +1,20 @@
 @import "styles/settings/__settings";
 
 .postCard {
-  position: relative;
-  padding: 1.2em;
   color: inherit;
   text-align: left;
   text-decoration: none;
+  border-bottom: 7px solid $color-gray;
+  height: 100%;
+
+  @media (min-width: 48rem) {
+    border-bottom: none;
+    border: 0.1rem solid $color-gray;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
   & > a {
     display: block;
@@ -22,7 +31,7 @@
 }
 
 .postCardSticky {
-  border: solid 0.02em $color-gray-100;
+  border: solid 0.02em $color-gray;
   border-radius: 1em;
 
   svg {
@@ -30,18 +39,23 @@
     top: 1.2em;
     right: 1em;
     font-size: 1.15em;
-    color: $color-gray-300;
+    color: $color-gray;
   }
 }
 
 .postCardTitle {
-  margin: 0 0 1em 0;
-  font-size: 1.5em;
+  font-family: $primary-font;
+  font-weight: 700;
+  color: $color-black;
+  margin: 1rem 1rem;
+  font-size: 1.4rem;
+  line-height: 140%;
 }
 
 .postCardContent {
-  font-size: 1.25em;
+  font-size: 1.2rem;
   margin: 0;
+  padding: 1rem 1rem;
 
   p {
     &:first-child {
@@ -55,5 +69,10 @@
 }
 
 .postCardMetadata {
-  margin: -0.8em -0.8em 0.4em;
+  padding: 0.5rem 0;
+}
+
+.postCardDivider {
+  margin: 0 1rem;
+  border-top: 1px solid $color-gray;
 }
